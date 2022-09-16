@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/style-prop-object */
 import React, { useLayoutEffect, useRef } from "react";
 import "./SliderSection.css";
 import web1 from "../assets/art/web1.jpg";
@@ -11,12 +13,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 const SliderSection = () => {
   var responsiveSlider = function () {
     var slider = document.getElementById("slider");
-    var sliderWidth = slider.offsetWidth;
-    var slideList = document.getElementById("slideWrap");
+    var sliderWidth = slider?.offsetWidth;
+    var slideList = document?.getElementById("slideWrap");
     var count = 1;
-    var items = slideList.querySelectorAll("li").length;
-    var prev = document.getElementById("prev");
-    var next = document.getElementById("next");
+    var items = slideList?.querySelectorAll("li").length;
+    var prev = document?.getElementById("prev");
+    var next = document?.getElementById("next");
 
     window.addEventListener("resize", function () {
       sliderWidth = slider.offsetWidth;
@@ -44,11 +46,11 @@ const SliderSection = () => {
       }
     };
 
-    next.addEventListener("click", function () {
+    next?.addEventListener("click", function () {
       nextSlide();
     });
 
-    prev.addEventListener("click", function () {
+    prev?.addEventListener("click", function () {
       prevSlide();
     });
 

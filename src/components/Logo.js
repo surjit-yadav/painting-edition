@@ -6,51 +6,17 @@ import { motion } from "framer-motion";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 const Container = styled.div`
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   color: ${(props) => props.theme.text};
   z-index: 5;
-
+  background-color: ${(props) => props.theme.body};
   display: flex;
-  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
-
-  img {
-    width: 5rem;
-    height: auto;
-    overflow: visible;
-
-    stroke-linejoin: round;
-    stroke-linecap: round;
-
-    stroke: ${(props) => props.theme.text};
-  }
-  svg {
-    width: 2rem;
-    height: auto;
-    overflow: visible;
-
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    g {
-      path {
-        stroke: ${(props) => props.theme.text};
-      }
-    }
-  }
-
-  @media (max-width: 40em) {
-    top: 0;
-    img {
-      margin-left:"-2px";
-    width: 4rem;
-  }
-    svg {
-    width: 2rem;
-   
 `;
 
 const Text = styled(motion.span)`
@@ -85,43 +51,35 @@ const pathVariants = {
 };
 
 const DrawerContainer = styled(motion.div)`
-  height: 100vh;
-  width: 10vw;
-  border-radius: 6px;
-  z-index: 6;
-  position: absolute;
-  right: ${(props) => (props.click ? 0 : `calc(-50vh - 4em)`)};
-
-  transition: all 0.3s ease;
-
+  display: none;
   @media (max-width: 40em) {
-    right: ${(props) => (props.click ? 0 : `calc(-50vh - 4em)`)};
-    width: 50vw;
+    display: ${(props) => (props.click ? "flex" : `none`)};
+    background: rgba(0, 0, 0, 0.7);
+    color: ${(props) => props.theme.text};
+    justify-content: space-between;
+    z-index: 6;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 100%;
+    height: auto;
   }
 `;
 
 const MenuItems = styled(motion.ul)`
-  position: absolute;
-  top: 52%;
-  height: 12rem;
-  background-color: ${(props) => props.theme.body};
-  color: ${(props) => props.theme.text};
   list-style: none;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-
-  width: 100%;
   margin-top: 0;
   padding: 0 1rem;
-
   @media (max-width: 40em) {
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    position: relative;
     padding: 0 10px 0 10px;
-    width: 90%;
-    height: 20vh;
+    margin-top: 1rem;
+    width: 100vw;
+    height: 100vh;
   }
 `;
 
@@ -137,8 +95,66 @@ const MenuItem = styled(motion.li)`
   }
 `;
 
-const MenuBtn = styled.div`
+const SideLogo = styled.div`
+  display: flex;
+  align-items: center;
+  img {
+    width: 5rem;
+    height: auto;
+    overflow: visible;
+
+    stroke-linejoin: round;
+    stroke-linecap: round;
+
+    stroke: ${(props) => props.theme.text};
+  }
+  @media (max-width: 40em) {
+    top: 0;
+    img {
+      margin-left: "-8px";
+      width: 4rem;
+    }
+  }
+`;
+
+const Menu = styled.div`
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  right: 5rem;
+
+  @media (max-width: 40em) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+  @media (max-width: 40em) {
+    top: 0;
+    display: block;
+    position: relative;
+    right: 2rem;
+    svg {
+      width: 2rem;
+      height: auto;
+      overflow: visible;
+
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      g {
+        path {
+          stroke: ${(props) => props.theme.text};
+        }
+      }
+    }
+  }
+`;
+const MenuText = styled(motion.div)`
+  font-size: ${(props) => props.theme.fontxl};
+  color: ${(props) => props.theme.text};
   cursor: pointer;
+  padding-bottom: 0.5rem;
 `;
 
 const Logo = () => {
@@ -156,21 +172,50 @@ const Logo = () => {
     });
   };
 
+  console.log(click, "click");
   return (
     <Container>
-      <motion.img
-        variants={pathVariants}
-        initial="hidden"
-        animate="visible"
-        src={logo}
-        alt="logo"
-      />
+      <SideLogo>
+        <motion.img
+          variants={pathVariants}
+          initial="hidden"
+          animate="visible"
+          src={logo}
+          alt="logo"
+        />
 
-      <Text variants={textVariants} initial="hidden" animate="visible">
-        ART FOR UNITY
-      </Text>
+        <Text variants={textVariants} initial="hidden" animate="visible">
+          ART FOR UNITY
+        </Text>
+      </SideLogo>
 
-      <button onClick={() => setClick(!click)} style={{ marginRight: "20px" }}>
+      <Menu>
+        <MenuText
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => handleScroll("#home")}
+        >
+          Home
+        </MenuText>
+        <MenuText
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => handleScroll(".about")}
+        >
+          About
+        </MenuText>
+        <MenuText
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => handleScroll("#new-arrivals")}
+        >
+          Art Gallery
+        </MenuText>
+      </Menu>
+      <MobileMenu onClick={() => setClick(!click)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -187,8 +232,7 @@ const Logo = () => {
             d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
           />
         </svg>
-      </button>
-
+      </MobileMenu>
       <DrawerContainer
         click={click}
         initial={{
@@ -202,8 +246,23 @@ const Logo = () => {
           delay: 5,
         }}
       >
+        <span
+          style={{ position: "relative", left: "15rem", cursor: "pointer" }}
+          onClick={() => setClick(!click)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            class="bi bi-x"
+            viewBox="0 0 16 16"
+          >
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </span>
         <MenuItems
-          drag="y"
+          drag="x"
           dragConstraints={{
             top: 0,
             bottom: 70,

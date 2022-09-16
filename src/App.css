@@ -13,3 +13,4 @@ body{
   height: 100vh;
   flex-direction: row;
 }
+::-webkit-scrollbar {display:none;}

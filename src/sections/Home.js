@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CoverVideo from "../components/CoverVideo";
 import Logo from "../components/Logo";
-import NavBar from "../components/NavBar";
+import Nav from "./nav";
 import SliderSection from "./SliderSection";
 
 const Section = styled.section`
@@ -15,8 +14,9 @@ const Home = () => {
   return (
     <Section id="home">
       <SliderSection />
+      {/* <Nav /> */}
       {/* <CoverVideo /> */}
-      <Logo />
+
       {/* <NavBar /> */}
     </Section>
   );

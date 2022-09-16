@@ -23,5 +23,6 @@ a{
     color:inherit;
     text-decoration:none;
 }
+::-webkit-scrollbar {display:none;}
 `;
 export default GlobalStyles;

@@ -58,10 +58,9 @@ const Title = styled.h1`
   text-shadow: 1px 1px 1px ${(props) => props.theme.text};
   color: ${(props) => props.theme.body};
   position: absolute;
-  top: 1rem;
+  top: 5rem;
   left: 5%;
   z-index: 11;
-
   @media (max-width: 64em) {
     font-size: ${(props) => props.theme.fontxxl};
   }
@@ -88,7 +87,7 @@ const Text = styled.div`
 
 const Container = styled.div`
   position: absolute;
-  top: 0;
+  top: 3rem;
   left: 50%;
   transform: translate(-50%, 0);
   width: 25vw;
@@ -105,6 +104,7 @@ const Container = styled.div`
   }
   @media (max-width: 48em) {
     width: 40vw;
+    transform: translate(-95px, 0);
   }
   @media (max-width: 30em) {
     width: 60vw;

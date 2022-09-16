@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
+import video from "../assets/logoAnimation.mp4";
 import { motion } from "framer-motion";
 
 const Container = styled(motion.div)`
@@ -23,7 +24,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   align-items: center;
 
-  background-color: ${(props) => props.theme.body};
+  background-color: ${(props) => props.theme.text};
   color: ${(props) => props.theme.text};
 
   img {
@@ -88,34 +89,26 @@ const Loader = () => {
       }}
       transition={{ duration: 2 }}
     >
-      <motion.img
+      <video
+        src={video}
+        type="video/mp4"
+        height="300px"
+        width="300px"
+        autoPlay
+        muted
+        loop
+      />
+      {/* <motion.img
         variants={pathVariants}
         initial="hidden"
         animate="visible"
         src={logo}
         alt="logo"
       />
-      {/* <svg
-        xmlns="http://www.w3.org/2000/svg"
-        enable-background="new 0 0 24 24"
-        height="48px"
-        viewBox="0 0 24 24"
-        width="48px"
-        fill="none"
-      >
-        <g></g>
-        <g>
-          <motion.path
-            variants={pathVariants}
-            initial="hidden"
-            animate="visible"
-            d="M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z"
-          />
-        </g>
-      </svg> */}
+
       <Text variants={textVariants} initial="hidden" animate="visible">
         ART FOR UNITY
-      </Text>
+      </Text> */}
     </Container>
   );
 };

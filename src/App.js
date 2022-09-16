@@ -15,6 +15,7 @@ import NewArrivals from "./sections/NewArrivals";
 import Footer from "./sections/Footer";
 import Loader from "./components/Loader";
 import { useEffect } from "react";
+import Logo from "./components/Logo";
 
 function App() {
   const containerRef = useRef(null);
@@ -57,6 +58,7 @@ function App() {
     <>
       <GlobalStyles />
       <ThemeProvider theme={dark}>
+        <Logo />
         <LocomotiveScrollProvider
           options={{
             smooth: true,
