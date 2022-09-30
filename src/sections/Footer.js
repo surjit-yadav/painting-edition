@@ -1,4 +1,5 @@
 import React from "react";
+import "./SliderSection.css";
 import styled from "styled-components";
 import Logo from "../assets/logo.png";
 import { motion } from "framer-motion";
@@ -19,6 +20,10 @@ const Section = styled.section`
 
   position: relative;
   /* background-color: yellow; */
+
+  @media (max-width: 600px) {
+    margin-top: -10rem !important;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -33,7 +38,6 @@ const LogoContainer = styled.div`
   }
   h3 {
     font-size: ${(props) => props.theme.fontxl};
-    font-family: "Kaushan Script";
 
     @media (max-width: 48em) {
       font-size: ${(props) => props.theme.fontxl};
@@ -133,24 +137,35 @@ const Footer = () => {
     });
   };
   return (
-    <Section>
+    <Section id="info">
       <LogoContainer>
-        <img data-scroll data-scroll-speed="2" src={Logo} alt="Company Name" />
-        <h3 data-scroll data-scroll-speed="-1">
+      <a href="/">
+        <img data-scroll data-scroll-speed="1" src={Logo} alt="Company Name" />
+        <h3 data-scroll data-scroll-speed="0">
           ART FOR UNITY
         </h3>
+        </a>
       </LogoContainer>
       <FooterComponent
         initial={{ y: "-400px" }}
         whileInView={{ y: 0 }}
         viewport={{ once: false }}
-        transition={{ duration: 1.5 }}
+        transition={{ duration: 1.0 }}
       >
         <ul>
           <li onClick={() => handleScroll("#home")}>home</li>
-          <li onClick={() => handleScroll(".about")}>about</li>
+          <li>
+              <a href="/teams">Our Team</a>
+          </li>
+          <li>
+              <a href="/contact">contact</a>
+          </li>
+          <li>
+            {" "}
+            <a href="/aboutus">about</a>
+          </li>
           {/* <li onClick={() => handleScroll("#shop")}>shop</li> */}
-          <li onClick={() => handleScroll("#new-arrivals")}>art galllery</li>
+          {/* <li onClick={() => handleScroll("#new-arrivals")}>art galllery</li> */}
           {/* <li>
             <a href="https://google.com" target="_blank" rel="noreferrer">
               look book
@@ -162,28 +177,21 @@ const Footer = () => {
             </a>
           </li> */}
         </ul>
-        <Bottom>
-          <span
+        <p className="change">
+          {/* <span
             data-scroll
             data-scroll-speed="2"
             data-scroll-direction="horizontal"
-          >
-            &copy; {new Date().getFullYear()}. All Rights Reserved.
-          </span>
-          <span
-            data-scroll
-            data-scroll-speed="-2"
-            data-scroll-direction="horizontal"
-          >
-            Made with &heart; by &nbsp;
-            <a href="https://google.com" target="_blank" rel="noreferrer">
-              google
-            </a>
-          </span>
-        </Bottom>
+          > */}
+            &copy; {new Date().getFullYear()} All Rights Reserved
+          {/* </span> */}
+          <br/>
+           Bhoomija Services
+        </p>
       </FooterComponent>
     </Section>
   );
 };
+
 
 export default Footer;

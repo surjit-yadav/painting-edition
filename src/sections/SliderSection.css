@@ -53,5 +53,9 @@
 #slider #next {
  right: 10px;
 }
-
+.change{
+    text-align: center;
+    font-size: x-large;
+    padding-top: 50px;
+}
 

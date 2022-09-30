@@ -13,6 +13,13 @@ const Section = styled.section`
 const Home = () => {
   return (
     <Section id="home">
+         <div  style={{position:'absolute',zIndex:'10' ,
+                  left:'40%',
+                  top:'30%'
+                 
+                 }}>
+      <Logo logoSize='large' showText={true} />
+      </div>
       <SliderSection />
       {/* <Nav /> */}
       {/* <CoverVideo /> */}

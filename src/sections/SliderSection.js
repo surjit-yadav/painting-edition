@@ -2,6 +2,7 @@
 /* eslint-disable react/style-prop-object */
 import React, { useLayoutEffect, useRef } from "react";
 import "./SliderSection.css";
+import web0 from "../assets/art/web0.jpg";
 import web1 from "../assets/art/web1.jpg";
 import web2 from "../assets/art/web2.jpg";
 import web3 from "../assets/art/web3.jpg";
@@ -66,6 +67,9 @@ const SliderSection = () => {
   return (
     <div id="slider">
       <ul id="slideWrap">
+      <li>
+          <img src={web0} alt="" />
+        </li>
         <li>
           <img src={web1} alt="" />
         </li>
